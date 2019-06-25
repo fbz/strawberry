@@ -1,5 +1,4 @@
 import cairo
-import math
 import numpy
 
 WIDTH, HEIGHT = 800, 600 # dimensions of canvas
