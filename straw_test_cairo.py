@@ -5,8 +5,10 @@ import numpy
 WIDTH, HEIGHT = 800, 600
 COLOR_BACKGROUND = (255, 255, 255) # background white
 
-surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, WIDTH, HEIGHT)
+surface = cairo.SVGSurface('straw_test_cairo.svg', WIDTH, HEIGHT) # for output to svg
+#surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, WIDTH, HEIGHT) # for output to png, also turn on at end
 ctx = cairo.Context(surface)
+
 
 ctx.scale(WIDTH, HEIGHT)  # Normalizing the canvas
 
@@ -68,5 +70,6 @@ for i in numpy.arange(.15, .25, .01): # numpy.arange allows range using floats
 		ctx.stroke()
 
 
+surface.finish() # output to svg, finish
 
-surface.write_to_png("straw_test_cairo.png")  # Output to PNG
+#surface.write_to_png("straw_test_cairo.png")  # Output to PNG
