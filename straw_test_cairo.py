@@ -1,5 +1,6 @@
 import cairo
 import math
+import numpy
 
 WIDTH, HEIGHT = 800, 600
 COLOR_BACKGROUND = (255, 255, 255) # background white
@@ -40,34 +41,32 @@ ctx.set_source_rgb(0, 128, 0)  # line color green
 ctx.set_line_width(0.002) # line width
 ctx.stroke()
 
-
+"""
 #draw a seed manually
-
 ctx.move_to(.17, .17)
 ctx.curve_to(.172, .18, .175, .170, .170, .170)
 
 ctx.set_source_rgb(0, 0, 0)  # line color black
 ctx.set_line_width(0.0005) # line width
 ctx.stroke()
+"""
 
-
-'''
 #generate some seeds on the strawberry
-for i in xrange(15, 25, 1):
-	for j in xrange(12, 18, 2):
-		a = i / 100
-		b = j / 100
-		c = (i + 2) / 100
-		d = (j + 10) / 100
-		e = (i + 5) / 100
-		f = j / 100
+for i in numpy.arange(.15, .25, .01): # numpy.arange allows range using floats
+	for j in numpy.arange(.12, .18, .02):
+		a = i
+		b = j
+		c = a + 0.002
+		d = b + 0.01
+		e = a + 0.005
+		f = b
 
 		ctx.move_to(a, b)
-		ctx.curve_to(c, d, e, f, f, f)
+		ctx.curve_to(a, b, c, d, e, f)
 		ctx.set_source_rgb(0, 0, 0)  # line color black
 		ctx.set_line_width(0.0005) # line width
 		ctx.stroke()
 
-'''
+
 
 surface.write_to_png("straw_test_cairo.png")  # Output to PNG
