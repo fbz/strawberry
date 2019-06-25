@@ -1,7 +1,7 @@
 import cairo
 import numpy
 
-WIDTH, HEIGHT = 200, 200 # dimensions of canvas
+WIDTH, HEIGHT = 800, 800 # dimensions of canvas
 COLOR_BACKGROUND = (255, 255, 255) # background white
 
 surface = cairo.SVGSurface('straw_test_cairo.svg', WIDTH, HEIGHT) # for output to svg
@@ -10,10 +10,12 @@ cx = cairo.Context(surface)
 
 cx.scale(WIDTH, HEIGHT)  # normalize canvas
 
+"""
 #fill background with white
-#cx.set_source_rgb(*COLOR_BACKGROUND)
-#cx.rectangle(0, 0, WIDTH, HEIGHT)
-#cx.fill()
+cx.set_source_rgb(*COLOR_BACKGROUND)
+cx.rectangle(0, 0, WIDTH, HEIGHT)
+cx.fill()
+"""
 
 #cx.translate(0.1, 0.1)  # translate the whole shebang
 
