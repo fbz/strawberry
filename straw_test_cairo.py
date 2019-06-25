@@ -1,7 +1,7 @@
 import cairo
 import numpy
 
-WIDTH, HEIGHT = 800, 600 # dimensions of canvas
+WIDTH, HEIGHT = 200, 200 # dimensions of canvas
 COLOR_BACKGROUND = (255, 255, 255) # background white
 
 surface = cairo.SVGSurface('straw_test_cairo.svg', WIDTH, HEIGHT) # for output to svg
