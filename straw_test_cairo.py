@@ -2,55 +2,55 @@ import cairo
 import math
 import numpy
 
-WIDTH, HEIGHT = 800, 600
+WIDTH, HEIGHT = 800, 600 # dimensions of canvas
 COLOR_BACKGROUND = (255, 255, 255) # background white
 
 surface = cairo.SVGSurface('straw_test_cairo.svg', WIDTH, HEIGHT) # for output to svg
 #surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, WIDTH, HEIGHT) # for output to png, also turn on at end
-ctx = cairo.Context(surface)
+cx = cairo.Context(surface)
 
+cx.scale(WIDTH, HEIGHT)  # normalize canvas
 
-ctx.scale(WIDTH, HEIGHT)  # Normalizing the canvas
+#fill background with white
+#cx.set_source_rgb(*COLOR_BACKGROUND)
+#cx.rectangle(0, 0, WIDTH, HEIGHT)
+#cx.fill()
 
-ctx.set_source_rgb(*COLOR_BACKGROUND) #fill the background with white
-ctx.rectangle(0, 0, WIDTH, HEIGHT)
-ctx.fill()
+#cx.translate(0.1, 0.1)  # translate the whole shebang
 
-ctx.translate(0.1, 0.1)  # Changing the current transformation matrix
+cx.move_to(.21, .1)
+# curve(x1, y1, x2, y2, x3, y3)
+cx.curve_to(.3, .08, .24, .21, .2, .2) #draw right side of strawberry
+cx.move_to(.19, .1)
+cx.curve_to(.08, .08, .17, .21, .2, .2) #draw left side of strawberry
 
-ctx.move_to(.21, .1)
-# Curve(x1, y1, x2, y2, x3, y3)
-ctx.curve_to(.3, .08, .24, .21, .2, .2) #draw right side of strawberry
-ctx.move_to(.19, .1)
-ctx.curve_to(.08, .08, .17, .21, .2, .2) #draw left side of strawberry
-
-ctx.set_source_rgb(255, 0, 0)  # line color red
-ctx.set_line_width(0.004) # line width
-ctx.stroke()
+cx.set_source_rgb(255, 0, 0)  # line color red
+cx.set_line_width(0.004) # line width
+cx.stroke() # draw
 
 #draw leaves of strawberry
-ctx.move_to(.19, .1)
-ctx.line_to(.15, .08)
-ctx.line_to(.19, .09)
-ctx.line_to(.16, .07)
-ctx.line_to(.2, .08)
-ctx.line_to(.24, .07)
-ctx.line_to(.21, .09)
-ctx.line_to(.25, .08)
-ctx.line_to(.21, .1)
+cx.move_to(.19, .1)
+cx.line_to(.15, .08)
+cx.line_to(.19, .09)
+cx.line_to(.16, .07)
+cx.line_to(.2, .08)
+cx.line_to(.24, .07)
+cx.line_to(.21, .09)
+cx.line_to(.25, .08)
+cx.line_to(.21, .1)
 
-ctx.set_source_rgb(0, 128, 0)  # line color green
-ctx.set_line_width(0.002) # line width
-ctx.stroke()
+cx.set_source_rgb(0, 128, 0)  # line color green
+cx.set_line_width(0.002) # line width
+cx.stroke() # draw
 
 """
 #draw a seed manually
-ctx.move_to(.17, .17)
-ctx.curve_to(.172, .18, .175, .170, .170, .170)
+cx.move_to(.17, .17)
+cx.curve_to(.172, .18, .175, .170, .170, .170)
 
-ctx.set_source_rgb(0, 0, 0)  # line color black
-ctx.set_line_width(0.0005) # line width
-ctx.stroke()
+cx.set_source_rgb(0, 0, 0)  # line color black
+cx.set_line_width(0.0005) # line width
+cx.stroke()
 """
 
 #generate some seeds on the strawberry
@@ -63,13 +63,11 @@ for i in numpy.arange(.15, .25, .01): # numpy.arange allows range using floats
 		e = a + 0.005
 		f = b
 
-		ctx.move_to(a, b)
-		ctx.curve_to(a, b, c, d, e, f)
-		ctx.set_source_rgb(0, 0, 0)  # line color black
-		ctx.set_line_width(0.0005) # line width
-		ctx.stroke()
-
+		cx.move_to(a, b)
+		cx.curve_to(a, b, c, d, e, f)
+		cx.set_source_rgb(0, 0, 0)  # line color black
+		cx.set_line_width(0.0005) # line width
+		cx.stroke() # draw
 
 surface.finish() # output to svg, finish
-
-#surface.write_to_png("straw_test_cairo.png")  # Output to PNG
+#surface.write_to_png("straw_test_cairo.png")  # output to png
