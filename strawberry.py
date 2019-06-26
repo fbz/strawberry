@@ -2,7 +2,6 @@ import cairo
 import numpy
 
 WIDTH, HEIGHT = 800, 800 # dimensions of canvas
-COLOR_BACKGROUND = (255, 255, 255) # background white
 
 surface = cairo.SVGSurface('strawberry.svg', WIDTH, HEIGHT) # for output to svg
 cx = cairo.Context(surface)
