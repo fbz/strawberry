@@ -1,24 +1,33 @@
+# strawberry generating code using pycairo
+# written by fbz
+
 import cairo
 import numpy
+import random
 
 WIDTH, HEIGHT = 800, 800 # dimensions of canvas
 
 surface = cairo.SVGSurface('strawberry.svg', WIDTH, HEIGHT) # for output to svg
 cx = cairo.Context(surface)
 
+
 cx.scale(WIDTH, HEIGHT)  # normalize canvas
 
 def strawberry():
-
-	x_translate = 0.0
+	
 
 	for k in range(0, 5, 1):
+
+		strawberry_angle = random.uniform(0.0,6.28)
+		#cx.rotate(strawberry_angle)
 		
+		right_curve_x3 = random.uniform(.18, .22)
+		right_curve_y1 = random.uniform(.005, 0.14)
+
 		cx.move_to(.21, .1)
-		# curve(x1, y1, x2, y2, x3, y3)
-		cx.curve_to(.3, .08, .24, .21, .2, .2) #draw right side of strawberry
+		cx.curve_to(.3, right_curve_y1, .24, .21, right_curve_x3, .2) #draw right side of strawberry
 		cx.move_to(.19, .1)
-		cx.curve_to(.08, .08, .17, .21, .2, .2) #draw left side of strawberry
+		cx.curve_to(.08, right_curve_y1, .17, .21, right_curve_x3, .2) #draw left side of strawberry
 
 		cx.set_source_rgb(255, 0, 0)  # line color red
 		cx.set_line_width(0.004) # line width
@@ -55,7 +64,10 @@ def strawberry():
 				cx.set_line_width(0.0005) # line width
 				cx.stroke() # draw
 
-		cx.translate(x_translate + 0.2 , 0.0)  # translate the whole shebang
+		#cx.translate(0.2 , 0.1)  # translate the whole shebang
+
+		cx.translate(0.2, 0.0)
+
 
 strawberry()
 
