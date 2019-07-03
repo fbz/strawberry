@@ -15,11 +15,9 @@ cx.scale(WIDTH, HEIGHT)  # normalize canvas
 
 def strawberry():
 	
+	cx.translate(-0.1, 0.0)
 
 	for k in range(0, 5, 1):
-
-		strawberry_angle = random.uniform(0.0,6.28)
-		#cx.rotate(strawberry_angle)
 		
 		right_curve_x3 = random.uniform(.18, .22)
 		right_curve_y1 = random.uniform(.005, 0.14)
@@ -64,9 +62,7 @@ def strawberry():
 				cx.set_line_width(0.0005) # line width
 				cx.stroke() # draw
 
-		#cx.translate(0.2 , 0.1)  # translate the whole shebang
-
-		cx.translate(0.2, 0.0)
+		cx.translate(0.2, 0.0) # translate the whole shebang
 
 
 strawberry()
